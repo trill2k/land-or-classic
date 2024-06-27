@@ -22,6 +22,9 @@ body {
 justify-content: flex-end;
         
 }
+table {
+    padding: 10px;
+}
 a {
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Make links inherit the color from their parent */
