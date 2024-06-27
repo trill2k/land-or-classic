@@ -1,0 +1,120 @@
+  /* Basic styles for layout */
+  body, html {
+    height: 100%;
+    margin: 0;
+    
+        background-color: rgb(9, 44, 23);
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+  }
+  .menu {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  li {
+    flex: 2;
+  }
+  #menu-right {
+    flex: 1;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  li {
+    display: inline-block;
+    padding: 10px;
+    list-style-type: none;
+    text-decoration: none;
+}
+  .main-container {
+    height: 500px;
+    display: flex;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 80px;
+  }
+  .bento-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Adjusted column widths */
+    gap: 20px;
+    flex: 2; /* Grow to fill remaining space */
+  }
+  .box {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: block; /* Ensure links behave like block-level elements */
+    text-decoration: none; /* Remove underline from links */
+    color: #ffffff; /* Text color */
+  }
+  .large-box {
+    grid-column: 1 / 2; /* Span first column */
+    grid-row: span 3; /* Span three rows */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+    background-size: cover;
+    background-position: center;
+  }
+  .small-box {
+    grid-column: 2 / 3; /* Span second column */
+    grid-row: span 1; /* Each small box takes one row */
+    padding: 1em;
+    background-size: cover;
+    background-position: center;
+  }
+  .side-container {
+    flex: 1; /* Grow to fill remaining space */
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0 20px 0 20px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2em;
+  }
+
+  .box{
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-size: cover;
+    text-decoration: none;
+}
+.box {
+    transition: transform 0.3s ease;
+    
+}
+.box:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+  .table-body {
+
+text-align: center;
+}
+
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .main-container {
+      flex-direction: column; /* Stack items in a column on smaller screens */
+    }
+    .bento-container {
+      grid-template-columns: 1fr; /* Single column layout for bento grid on smaller screens */
+    }
+    .large-box, .small-box {
+      grid-column: 1 / 2; /* Full width for each box */
+      grid-row: auto; /* Reset grid row for smaller screens */
+    }
+    .side-container {
+      flex: 1; /* Grow to fill full width */
+      margin-top: 20px; /* Add space between bento grid and side container */
+      
+    }
+  }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Land'Or Classic</title>
+</head>
+<body>
+
+    <div class="menu">
+        <nav>
+            <div clas="menu" id="menu-left">
+            <ui>
+                <li><a href="index.html">Leaderboard</a></li>
+                <li><a href="about.html">About</a></li>
+                
+            </ui>
+        </div>
+        </nav>
+        <div class="menu" id="menu-right">
+            <a href="https://www.instagram.com/duckduck_birdie/" target="_blank">
+                <img src="instagram.png" alt="Instagram Profile"></a>
+    </div>
+    </div>
+
+<div class="main-container">
+  <!-- Bento Grid Container -->
+  <div class="bento-container">
+    <!-- Left column: Large box -->
+
+    <a href="niall.html" class="box large-box" style="background-image: url('l-classic.png');">
+            <h1>Niall Kingdale</h1>      
+    </a>
+
+    <!-- Right column: Three equal rows -->
+    <a href="sam.html" class="box small-box" style="background-image: url('l-classic2.png');">
+        <h1>Sam Slocum</h1>  
+    </a>
+    <a href="pat.html" class="box small-box" style="background-image: url('l-classic3.png');">
+        <h1>Patrick Lawless</h1>  
+    </a>
+    <a href="ben.html" class="box small-box" style="background-image: url('l-classic4.png');">
+        <h1>Ben Peters</h1>  
+    </a>
+  </div>
+  <!-- Side Container -->
+
+  <div class="side-container">
+    <h1>LEADERBOARD</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <!-- Table Headers will go here -->
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <!-- Table Data will go here -->
+        </tbody>
+    </table>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/11mMAyDLCWtaAbEd-Ifh-kLiNiXt8lXQvj9vPdsVxc2o/gviz/tq?tqx=out:json';
+                      
+
+    fetch(sheetURL)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok ' + res.statusText);
+            }
+            return res.text();
+        })
+        .then(data => {
+            // Strip off the leading characters to get valid JSON
+            const jsonData = JSON.parse(data.substr(47).slice(0, -2));
+            const table = document.getElementById('data-table');
+            const thead = table.querySelector('thead tr');
+            const tbody = table.querySelector('tbody');
+
+            // Specify the columns you want to display (e.g., 0 and 1 for first two columns)
+            const columnsToDisplay = [0, 1];
+
+            // Add headers
+            jsonData.table.cols.forEach((header, index) => {
+                if (columnsToDisplay.includes(index)) {
+                    const th = document.createElement('th');
+                    th.textContent = header.label;
+                    thead.appendChild(th);
+                }
+            });
+
+            // Add rows
+            jsonData.table.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                row.c.forEach((cell, index) => {
+                    if (columnsToDisplay.includes(index)) {
+                        const td = document.createElement('td');
+                        td.textContent = cell ? cell.v : '';
+                        tr.appendChild(td);
+                    }
+                });
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+</script>
+</html>
